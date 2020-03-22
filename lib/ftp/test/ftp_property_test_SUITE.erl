@@ -39,10 +39,12 @@
 
 all() -> [prop_ftp_case].
 
+suite() -> [{require, numtests}].
+
 
 init_per_suite(Config) ->
     ftp:start(),
-    ct_property_test:init_per_suite(Config).
+    ct_property_test:init_per_suite([{numtests, ct:get_config(numtests)} | Config]).
     
 end_per_suite(Config) ->
     Config.
